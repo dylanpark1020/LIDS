@@ -3,7 +3,7 @@ import numpy as np
 
 DEFAULT_K = 30
 DEFAULT_ALPHA = 1.0
-DEFAULT_SINGULAR_VALUE_FRACTION = 0.9999
+DEFAULT_SINGULAR_VALUE_FRACTION = 1.0
 
 
 def percent_weight_sqr_sing_vals(fraction, singular_values):

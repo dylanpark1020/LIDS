@@ -5,7 +5,7 @@ from .direction_vectors import compute_direction_vectors
 
 DEFAULT_ALPHA = 1.0
 DEFAULT_K = 30
-DEFAULT_SINGULAR_VALUE_FRACTION = 0.9999
+DEFAULT_SINGULAR_VALUE_FRACTION = 1.0
 DEFAULT_MAX_LENGTH = 512
 
 
@@ -16,8 +16,6 @@ _embedders = {}
 
 def _get_embedder(max_length=DEFAULT_MAX_LENGTH):
     if max_length not in _embedders:
-        # Keep heavyweight ML imports lazy so lightweight helpers such as
-        # get_text remain usable before the first similarity calculation.
         from .embeddings import BERTEmbedder
 
         _embedders[max_length] = BERTEmbedder(max_length=max_length)
@@ -67,10 +65,10 @@ def LIDS_similarity(
         Maximum number of aligned SVD layers to compare.
 
     alpha : float, optional
-        Singular-value weighting exponent.
+        Singular value weighting exponent.
 
     singular_value_fraction : float, optional
-        Fraction of squared singular-value weight used when
+        Fraction of squared singular value weight used when
         determining the effective rank.
 
     max_length : int, optional

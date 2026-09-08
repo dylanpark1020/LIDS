@@ -23,8 +23,7 @@ class BERTEmbedder:
         if not isinstance(max_length, int) or isinstance(max_length, bool) or max_length < 3:
             raise ValueError("max_length must be an integer of at least 3.")
 
-        self.max_length = max_length
-
+        self.max_length = max_length 
         self.tokenizer = BertTokenizer.from_pretrained(model_name)
         self.model = BertModel.from_pretrained(model_name)
         self.model.eval()
